@@ -1,0 +1,4 @@
+Django==4.2
+django-import-export==2.8.0
+django-filter==23.1
+Pillow==9.5.0

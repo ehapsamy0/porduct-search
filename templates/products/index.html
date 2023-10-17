@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+    {% block body %}
+
+
+
+    <section class="contact-section contact_pg_contact">    
+        <div class="container">
+            <!-- Start: Heading -->
+            <div class="base-header">
+                <h3>Search Here</h3> 
+            </div>
+            <!-- End: Heading -->
+            <div class="contact_wrp">
+                <div class="row">
+
+                    <div class="col-md-12 col-sm-12 inner-contact">
+                        <!--  Contact Form  -->
+                        <div class="contact-form">
+                            
+                            <form method="get" action="" id="contact-form">
+                                <div class="row">
+                                    <div class="col-lg-10 col-sm-12">
+                                        <input class="con-field" name="name" id="name" type="text" placeholder="Name">
+                                    </div>
+                                    <div class="col-lg-2 col-sm-12 text-center">
+                                        <input type="submit" class="submit-contact" value="Search">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- End:Contact Form  -->
+                    </div>
+                   
+                </div>
+             <!-- row /- -->
+            </div>
+        </div>
+        <!-- container /- -->
+    </section>
+
+
+
+<!--  Start: Featured Product Section
+==================================================-->
+<section class="product-section product_pg_prod">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 product_show">
+                <p>Showing Products {{ object_list.start_index }}-{{ object_list.end_index }} of {{ object_list.paginator.count }} Result</p>
+            </div>
+        </div>
+        <div class="row">
+            {% for  product in object_list %}
+            <div class="col-md-3 col-sm-12">
+                <a href="{% url "product:products-details" product.id %}">
+                    <!-- product 1-->
+                    <div class="product_wrp">
+                        <div class="product_img">
+                            <img alt="team" class="img-responsive" src="{{product.image.url}}">
+
+                        </div>
+                        <div class="product_info">
+                            <h4>{{product.part_number}}</h4> 
+                            <span class="product_price">{{product.status}}</span>
+                        </div>
+
+                    </div>
+                </a>
+
+            </div>
+            <!--End: product 1-->
+            {% endfor %}
+            {% if object_list.has_other_pages %}
+            <div class="prodt_pagination">
+                <ul>
+                    <li>
+                        <a class="page_number"
+                            href="{% if object_list.has_previous %}?page={{ object_list.previous_page_number }}{% else %}#{% endif %}"
+                            aria-label="Previous">
+                            <
+                        </a>
+                    </li>
+
+                    {% for i in object_list.paginator.page_range %}
+                        {% if object_list.number == i %}
+                        <li class="active">
+                            <a class="page_number" href="?page={{ i }}">
+                                {{i}}
+                            </a>
+                        </li>
+                        {% elif i > object_list.number|add:'-4' and i < object_list.number|add:'4' %} <li
+                            >
+                            <a class="page_number" href="?page={{ i }}">
+                                {{i}}
+                            </a>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                    <li>
+                        <a class="page_number"
+                            href="{% if object_list.has_next %}?page={{object_list.next_page_number}}{% else %}#{% endif %}"
+                            aria-label="Next">
+                            →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            {% endif %}
+
+
+        </div>
+        <!--/.row -->
+    </div>
+    <!--/.container -->
+</section>
+<!--  End: Featured Product Section 
+==================================================-->
+
+
+{% endblock %}

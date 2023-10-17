@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+    {% block body %}
+
+
+
+    <section class="contact-section contact_pg_contact">    
+        <div class="container">
+            <!-- Start: Heading -->
+            <div class="base-header">
+                <h3>Search Here</h3> 
+            </div>
+            <!-- End: Heading -->
+            <div class="contact_wrp">
+                <div class="row">
+
+                    <div class="col-md-12 col-sm-12 inner-contact">
+                        <!--  Contact Form  -->
+                        <div class="contact-form">
+                            
+                            <form method="get" action="{% url "product:search-products" %}" id="contact-form">
+                                <div class="row">
+                                    <div class="col-lg-10 col-sm-12">
+                                        <input class="con-field" name="name" id="name" type="text" placeholder="Name">
+                                    </div>
+                                    <div class="col-lg-2 col-sm-12 text-center">
+                                        <input type="submit" class="submit-contact" value="Send Message">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- End:Contact Form  -->
+                    </div>
+                   
+                </div>
+             <!-- row /- -->
+            </div>
+        </div>
+        <!-- container /- -->
+    </section>
+
+
+
+
+{% endblock %}

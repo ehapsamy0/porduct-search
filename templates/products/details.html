@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load split %}
+    {% block body %}
+
+
+ 
+<!-- End:Service Section 
+==================================================-->
+    <div class="shop-product-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="shop-products">
+                        <div class="single-item-detail">
+                            <div class="product-thumbnail">
+                                <div class="single-thumbnail-big">
+                                    <a class="project-link" href="{{object.image.url}}" tabindex="0">
+                                        <img src="{{object.image.url}}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 m-auto">
+                    <div class="allproduct-info">
+                        <div class="tittle_product">
+                            <a href="">{{object.part_number}}</a>
+                            <div class="next_prev">
+                                <a href="" class="next"><span class="arrow_carrot-left"></span></a>
+                                <a href="" class="prev"><span class="arrow_carrot-right"></span></a>
+                            </div>
+                        </div>
+                        <div class="allproduct-price-area">   
+ 
+
+                            <div class="product_model">
+                                {% if object.part_number_new %}
+                                <ul class="prd_model">
+                                    <li><span>new part number:</span>&nbsp;</li>
+                                    <li class="model_no">{{object.part_number_new}}</li>
+                                </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="cust-reviews-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">                       
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+                            Product Prices
+                        </a>
+                        <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">product description</a>
+                    </div>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="product_aditi_cont tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                            <table class="prod_attributes">
+                                <tbody>
+                                    {% for price in object.prices.all %}
+                                    <tr class="attri">
+                                        <th>{{ forloop.counter }} - {{price.name}} </th>
+                                        <td>{{price.price}}</td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div> 
+
+                        <div class="product_des tab-pane fade " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            {% for desc in object.description|split:";" %}
+                                <p>{{ desc }}</p>
+                            {% endfor %}
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End:Footer Section 
+==================================================-->
+
+
+
+{% endblock %}
