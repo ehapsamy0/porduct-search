@@ -13,7 +13,7 @@ class ProductStatus(models.TextChoices):
 
 
 class Product(models.Model):
-    part_number = models.CharField(max_length=120)
+    part_number = models.CharField(max_length=120,unique=True)
     part_number_new = models.CharField(max_length=120,null=True,blank=True)
     part_number_description = models.TextField(null=True,blank=True)
     image = models.ImageField(upload_to="product_image/")

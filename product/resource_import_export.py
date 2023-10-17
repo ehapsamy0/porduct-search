@@ -7,6 +7,8 @@ class ProductResource(resources.ModelResource):
 
     class Meta:
         model = Product
+        skip_unchanged = True
+        report_skipped = True
         exclude = ('id',)
         import_id_fields = ('part_number',)
 
